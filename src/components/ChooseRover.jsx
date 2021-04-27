@@ -79,9 +79,9 @@ h2{
 
 const ChooseRover = ({ setCount, setRover}) => {
     const rovers = [
-        {name1: "Curiosity", src: `${Curiosity}`},
-        {name1: "Opportunity", src: `${opportunity}`},
-        {name1: "Spirit", src: `${Spirit}`}
+        {name1: "curiosity", src: `${Curiosity}`},
+        {name1: "opportunity", src: `${opportunity}`},
+        {name1: "spirit", src: `${Spirit}`}
     ];
     const handleClick = (e) => {
         setCount(count => count + 1)
@@ -96,7 +96,9 @@ const ChooseRover = ({ setCount, setRover}) => {
                     <div className="wrapper" key={i} >
                         <div className="container" key={i + 5}>
                             <img src={rover.src} alt="Rover Curiosity" className="img" key={i + 10}/>
-                            <div className="overlay" key={i +15} onClick={handleClick} id={rover.name1}><h3>{rover.name1}</h3></div>
+                            <div className="overlay" key={i +15} onClick={handleClick} id={rover.name1}>
+                                <h3 id={rover.name1}>{rover.name1}</h3>
+                            </div>
                         </div>
                     </div>
             )})}
