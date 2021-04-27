@@ -61,6 +61,13 @@ h2{
         justify-content: space-around;
         align-items: center;
     }
+    h2{
+        position: relative;
+        top: 15vh;
+        z-index: 10;
+        font-size: 2em;
+        font-weight: lighter;
+    }
 }
 `
 
