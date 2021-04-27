@@ -11,6 +11,10 @@ align-items: center;
 .wrapper {
     width:80%;
     border: 1px solid rgba(255,255,255,0.3);
+    h4 {
+        margin: 0;
+        padding: 20px;
+    }
 }
 .wrapper:hover {
     cursor: pointer;
@@ -28,10 +32,10 @@ align-items: center;
     width:40%;
     border: 1px solid rgba(255,255,255,0.3);
 }
-}
+}}
 `
 
-export default function ChooseCamera({ rover }) {
+export default function ChooseCamera({ rover, setCam, setCount }) {
     const cameras = [
         "Front Hazard Avoidance",
         "Rear Hazard Avoidance",
@@ -45,19 +49,23 @@ export default function ChooseCamera({ rover }) {
     const curiosity = [0,1,2,3,4,5,6];
     const so = [0,1,5,6] // spirit and oppportunity
 
+    const handleClick = (e) => {
+        setCam(e.target.textContent)
+        setCount(count => count + 1)
+    }
     return (
         <StyledChooseCamera>
             <h2>Choose a camera</h2>
             {(rover === "Curiosity") ? curiosity.map((i) =>{
                     return (
                         <div className="wrapper">
-                            <h4>{cameras[i]}</h4>
+                            <h4 onClick={handleClick}>{cameras[i]}</h4>
                         </div>
                     )
                 }) : so.map((i) =>{
                     return (
                         <div className="wrapper">
-                            <h4>{cameras[i]}</h4>
+                            <h4 onClick={handleClick}>{cameras[i]}</h4>
                         </div>
                     )
                 }) 
