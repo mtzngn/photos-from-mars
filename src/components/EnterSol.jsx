@@ -37,18 +37,26 @@ align-items: center;
     }
 }
 `
-const EnterSol = ({ setCount}) => {
-
+const EnterSol = ({ setCount, setSol }) => {
+    const [inputText, setInputText] = useState("");
+    const handleChange = (e) => {
+        setInputText(e.target.value)
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setCount(count => count + 1)
+        setSol(inputText)
+    }
     return (
         <StyledEnterSol >
             <div className="title">
                 <h2>Enter Sol</h2>
                 <h3>Sol is the Martian rotation or day. Counting up  from the rover’s landing date.</h3>
             </div>
-            <div className="input-wrapper">
-                <TextInput className="input" type="number" min="0"/>
-                <Button setCount={setCount}>Next</Button>
-            </div>
+            <form className="input-wrapper" onSubmit={handleSubmit}>
+                <TextInput className="input" type="number" min="0" onChange={handleChange} required/>
+                <Button value={"Next"}></Button>
+            </form>
         </StyledEnterSol>
     )
 }

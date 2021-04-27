@@ -25,6 +25,7 @@ h2{
     height: 200px;
     border-radius: 40px;
     }
+
     .overlay {
         position: absolute;
         bottom: 0;
@@ -48,8 +49,13 @@ h2{
 
     }
 }
+
 .container:hover .overlay {
     opacity: 1;
+}
+.container:hover {
+    transform: scale(1.1);
+    transition: 1s ease-in-out;
 }
 }
 @media(min-width: 1024px) {
