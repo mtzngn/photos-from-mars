@@ -37,7 +37,7 @@ align-items: center;
     }
 }
 `
-const EnterSol = ({ setCount, setSol }) => {
+const EnterSol = ({ setCount, setSol, rover }) => {
     const [inputText, setInputText] = useState("");
     const handleChange = (e) => {
         setInputText(e.target.value)
@@ -48,7 +48,7 @@ const EnterSol = ({ setCount, setSol }) => {
         setSol(inputText)
     }
     return (
-        <StyledEnterSol >
+        rover && <StyledEnterSol >
             <div className="title">
                 <h2>Enter Sol</h2>
                 <h3>Sol is the Martian rotation or day. Counting up  from the rover’s landing date.</h3>

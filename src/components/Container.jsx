@@ -13,6 +13,7 @@ background-color: #1B3A4B;
 margin-top: 10vh;
 position: fixed;
 z-index: 0;
+overflow-y: scroll;
 
 `
 
@@ -25,9 +26,9 @@ export default function Container() {
 
     const components = [
         <ChooseRover setCount={setCount} setRover ={setRover}/>,
-        <EnterSol setCount={setCount} setSol={setSol}/>,
+        <EnterSol setCount={setCount} setSol={setSol} rover={rover}/>,
         <ChooseCamera setCount={setCount} rover={rover} setCam={setCam}/>,
-        <DisplayImages />
+        <DisplayImages rover={rover} setRover={setRover} sol={sol} setSol={setSol} setCount={setCount} cam={cam}/>
     ]
     return (
 

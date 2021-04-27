@@ -58,14 +58,14 @@ export default function ChooseCamera({ rover, setCam, setCount }) {
             <h2>Choose a camera</h2>
             {(rover === "Curiosity") ? curiosity.map((i) =>{
                     return (
-                        <div className="wrapper">
-                            <h4 onClick={handleClick}>{cameras[i]}</h4>
+                        <div className="wrapper" key={i + 10}>
+                            <h4 onClick={handleClick} key={i}>{cameras[i]}</h4>
                         </div>
                     )
                 }) : so.map((i) =>{
                     return (
-                        <div className="wrapper">
-                            <h4 onClick={handleClick}>{cameras[i]}</h4>
+                        <div className="wrapper" key={i + 10}>
+                            <h4 onClick={handleClick} key={i}>{cameras[i]}</h4>
                         </div>
                     )
                 }) 
