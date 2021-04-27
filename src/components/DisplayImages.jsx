@@ -1,9 +1,16 @@
 import React from 'react'
+import styled from "styled-components"
 
-export default function DisplayImages() {
+const StyledDisplayImages = styled.div`
+z-index: 10;
+position: relative;
+`
+
+const DisplayImages = () => {
     return (
-        <div>
+        <StyledDisplayImages>
             <h1>Display Images here</h1>
-        </div>
+        </StyledDisplayImages>
     )
 }
+export default  DisplayImages

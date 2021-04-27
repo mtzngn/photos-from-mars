@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import styled from "styled-components"
 
 const StyledEnterSol = styled.div`
-
+z-index: 10;
 `
-export default function EnterSol({setChooseSol}) {
+const EnterSol = ({ count, setCount}) => {
 
     const handleClick = () => {
-        setChooseSol(true)
+        setCount(count => count + 1)
     }
     
     return (
@@ -16,3 +16,4 @@ export default function EnterSol({setChooseSol}) {
         </StyledEnterSol>
     )
 }
+export default EnterSol;

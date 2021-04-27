@@ -24,15 +24,14 @@ width: 80%;
 
 `
 
-function App() {
+const App = () => {
   return (
     <StyledApp>
       <div className="title">
-      <h1>Photos From Mars App</h1>
-      <hr></hr>
+        <h1>Photos From Mars App</h1>
+        <hr></hr>
       </div>
-
-    <Container/>
+      <Container/>
     </StyledApp>
   );
 }
