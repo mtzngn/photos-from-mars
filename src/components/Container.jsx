@@ -24,9 +24,9 @@ export default function Container() {
 
 
     const components = [
-        <ChooseRover count={count} setCount={setCount} setRover ={setRover}/>,
-        <EnterSol count={count} setCount={setCount}/>,
-        <ChooseCamera count={count} setCount={setCount}/>,
+        <ChooseRover setCount={setCount} setRover ={setRover}/>,
+        <EnterSol setCount={setCount} setSol={setSol}/>,
+        <ChooseCamera setCount={setCount}/>,
         <DisplayImages />
     ]
     return (

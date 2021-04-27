@@ -21,12 +21,10 @@ border: none;
 
 }
 `
-const Button = ({setCount}) => {
-    const handleClick = () => {
-        setCount(count => count + 1)
-    }
+const Button = () => {
+
     return (
-        <StyledButton onClick={handleClick}>Next</StyledButton>
+        <StyledButton>Next</StyledButton>
     )
 }
 
