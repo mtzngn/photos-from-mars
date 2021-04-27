@@ -12,6 +12,8 @@ border: none;
 :hover {
     cursor: pointer;
     box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+    transform: scale(1.1);
+    transition: 0.3s ease;
 }
 :active {
     transform: scale(0.9);
@@ -21,10 +23,10 @@ border: none;
 
 }
 `
-const Button = () => {
+const Button = ({value}) => {
 
     return (
-        <StyledButton>Next</StyledButton>
+        <StyledButton>{value}</StyledButton>
     )
 }
 

@@ -55,7 +55,7 @@ const EnterSol = ({ setCount, setSol }) => {
             </div>
             <form className="input-wrapper" onSubmit={handleSubmit}>
                 <TextInput className="input" type="number" min="0" onChange={handleChange} required/>
-                <Button>Next</Button>
+                <Button value={"Next"}></Button>
             </form>
         </StyledEnterSol>
     )
