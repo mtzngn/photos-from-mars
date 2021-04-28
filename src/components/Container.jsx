@@ -13,8 +13,7 @@ background-color: #1B3A4B;
 margin-top: 10vh;
 position: fixed;
 z-index: 0;
-overflow-y: scroll;
-
+overflow-y: auto;
 `
 
 export default function Container() {
