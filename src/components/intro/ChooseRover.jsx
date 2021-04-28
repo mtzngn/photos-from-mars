@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
-import Curiosity from '../assets/Curiosity.jpg' ;
-import opportunity from '../assets/opportunity.jpg' ;
-import Spirit from '../assets/Spirit.jpg' ;
+import Curiosity from '../../assets/Curiosity.jpg' ;
+import opportunity from '../../assets/opportunity.jpg' ;
+import Spirit from '../../assets/Spirit.jpg' ;
 
 const StyledChooseRover = styled.div`
 z-index: 10;

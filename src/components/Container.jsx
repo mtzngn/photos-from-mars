@@ -1,8 +1,8 @@
 import React, { useState }  from 'react';
-import EnterSol from "./EnterSol"
-import ChooseCamera from "./ChooseCamera"
-import DisplayImages from "./DisplayImages"
-import ChooseRover from "./ChooseRover"
+import EnterSol from "./intro/EnterSol"
+import ChooseCamera from "./intro/ChooseCamera"
+import DisplayImages from "./displayImages/DisplayImages"
+import ChooseRover from "./intro/ChooseRover"
 import styled from "styled-components";
 
 

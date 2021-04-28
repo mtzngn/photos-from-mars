@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from "styled-components"
 import TextInput from '@bit/learn-bit.react-demo-app.text-input';
-import Button from './Button';
+import Button from '../Button';
 
 
 
