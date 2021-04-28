@@ -19,6 +19,7 @@ hr{
     width: 95%;
     border: 1px solid #000;
     margin: 0;
+    margin-top: 10px;
 
 }
 .info {
@@ -47,9 +48,11 @@ hr{
         justify-content: center;
         align-items: center;
         img {
-            padding: 10px;
+            margin-top: 10px;
             width: 200px;
             height: 200px;
+            box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.5);
+
         }
     }
 }
@@ -67,7 +70,20 @@ hr{
         align-items: center;
         select {
             width: 25%;
-
+            height: 30px;
+            background-color: #3E1F47;
+            border: none;
+            color: #fff;
+        }
+        input {
+            width: 25%;
+            height: 30px;
+            background-color: #3E1F47;
+            border: none;
+            color: #fff;
+        }
+        select:hover {
+            cursor: pointer;
         }
     }
     .button-wrapper {
@@ -75,6 +91,29 @@ hr{
         display: flex;
         justify-content: center;
         align-items: center;
+        button{
+            width: 120px;
+            height: 30px;
+
+            font-size: 1em;
+            color: #fff;
+            background-color: #3E1F47;
+            box-shadow: none;
+            border: none;
+        }
+
+        button:hover {
+                cursor: pointer;
+                box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+                transform: scale(1.1);
+                transition: 0.3s ease;
+            }
+        button:active {
+                transform: scale(0.9);
+                box-shadow: 0px 0px 2px 2px rgba(62,31,71,0.2),
+                0px 0px 3px 4px rgba(62,31,71,0.5),
+                inset 2px 2px 4px rgba(0,0,0,0.3);
+            }
     }
 }
 .display {
@@ -108,7 +147,6 @@ hr{
             width: 100%;
         }
     }
-
 
 
 }
@@ -145,6 +183,20 @@ const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
         isFirstRender.current = false;
     }, []);
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+
+    const handleRoverChange = (e) => {
+        setRover(e.target.value)
+    }
+    const handleSolChange = (e) => {
+        setSol(e.target.value)
+    }
+    const handleCamChange = (e) => {
+        console.log(e.target.value)
+    }
+
 
 
     return (
@@ -179,14 +231,35 @@ const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
             </div>
             <hr/>
             <div className="update">
-                <div className="selections">
-                    <select name="rover"></select>
-                    <select name="sol"></select>
-                    <select name="camera"></select>
-                </div>
+
+                <form onSubmit={handleSubmit} className="selections">
+                    <select name="rover" onChange={handleRoverChange}>
+                        <option value="curiosity">curiosity</option>
+                        <option value="opportunity">opportunity</option>
+                        <option value="spirit">spirit</option>
+                    </select>
+                    <input type="number" required min="0" onChange={handleSolChange}></input>
+                    <select name="camera" onChange={handleCamChange}>
+                        <option value="fhaz">Front Hazard Avoidance</option>
+                        <option value="rhaz">Rear Hazard Avoidance</option>
+                        <option value="mardi">Mars Descent Imager</option>
+                        <option value="navcam">Navigation</option>
+
+                        {rover !== "curiosity" ? 
+                        <option value="navcam">Panoramic</option> :
+                        <>
+                        <option value="mast">Mast</option>
+                        <option value="chemcam">Chemistry and Camera Complex</option>
+                        <option value="mahli">Mars Hand Lens Imager</option>
+                        </> 
+                        }
+
+                    </select>
+                </form>
                 <div className="button-wrapper">
-                    <button>Update</button>
+                    <button onClick={handleSubmit}>Update</button>
                 </div>
+
             </div>
             <div className="display">
                 {(photos.length > 1) && photos.map((photo) => {

@@ -47,7 +47,7 @@ export default function ChooseCamera({ rover, setCam, setCount }) {
         "Panoramic",
     ]
     const curiosity = [0,1,2,3,4,5,6];
-    const so = [0,1,5,6] // spirit and oppportunity
+    const so = [0,1,5,6, 7] // spirit and oppportunity
 
     const handleClick = (e) => {
         setCam(e.target.textContent)
