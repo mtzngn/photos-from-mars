@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/photos-from-mars/static/css/main.429954f9.chunk.css",
+    "main.js": "/photos-from-mars/static/js/main.91723eb3.chunk.js",
+    "main.js.map": "/photos-from-mars/static/js/main.91723eb3.chunk.js.map",
+    "runtime-main.js": "/photos-from-mars/static/js/runtime-main.e6624043.js",
+    "runtime-main.js.map": "/photos-from-mars/static/js/runtime-main.e6624043.js.map",
+    "static/js/2.a81f1e9a.chunk.js": "/photos-from-mars/static/js/2.a81f1e9a.chunk.js",
+    "static/js/2.a81f1e9a.chunk.js.map": "/photos-from-mars/static/js/2.a81f1e9a.chunk.js.map",
+    "index.html": "/photos-from-mars/index.html",
+    "static/css/main.429954f9.chunk.css.map": "/photos-from-mars/static/css/main.429954f9.chunk.css.map",
+    "static/js/2.a81f1e9a.chunk.js.LICENSE.txt": "/photos-from-mars/static/js/2.a81f1e9a.chunk.js.LICENSE.txt",
+    "static/media/Curiosity.ad997052.jpg": "/photos-from-mars/static/media/Curiosity.ad997052.jpg",
+    "static/media/Spirit.81384a8c.jpg": "/photos-from-mars/static/media/Spirit.81384a8c.jpg",
+    "static/media/opportunity.f0187239.jpg": "/photos-from-mars/static/media/opportunity.f0187239.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e6624043.js",
+    "static/js/2.a81f1e9a.chunk.js",
+    "static/css/main.429954f9.chunk.css",
+    "static/js/main.91723eb3.chunk.js"
+  ]
+}
