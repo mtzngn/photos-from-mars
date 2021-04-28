@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
-import styled from "styled-components"
+import styled from "styled-components";
+import Curiosity from '../assets/Curiosity.jpg' ;
+import opportunity from '../assets/opportunity.jpg' ;
+import Spirit from '../assets/Spirit.jpg' ;
+
 
 const StyledDisplayImages = styled.div`
 width: 100%;
@@ -14,10 +18,11 @@ hr{
     display: none;
     width: 95%;
     border: 1px solid #000;
+    margin: 0;
 
 }
 .info {
-    height: 20vh;
+    min-height: 20vh;
     width: 95%;
     display: none;
     justify-content: space-evenly;
@@ -38,8 +43,14 @@ hr{
         }
     }
     .img-wrapper {
-        width: 200px;
-        border: 1px solid #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            padding: 10px;
+            width: 200px;
+            height: 200px;
+        }
     }
 }
 
@@ -106,16 +117,19 @@ hr{
 
 const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
     const [query, setQuery] = useState("");
-    const isFirstRender = useRef(true)
-    const [photos, setPhotos] = useState([])
+    const isFirstRender = useRef(true);
+    const [photos, setPhotos] = useState([]);
+    const [details, setDetails] = useState({});
+
 
     const getData = async() => {
         try {
             let response = await fetch(query);
             let data =  await response.text();
             let dataJ = JSON.parse(data)
-            console.log(dataJ)
+            console.log(dataJ.photos[0].rover)
             setPhotos(...photos, dataJ.photos)
+            setDetails(dataJ.photos[0].rover)
         } catch (err) {
             console.log(err)
         }
@@ -139,26 +153,29 @@ const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
                 <div className="details">
                     <div className="line">
                         <p>Name of the Rover:</p>
-                        <p>TEST</p>
+                        <p>{details.name}</p>
                     </div>
                     <div className="line">
                         <p>Landing Date:</p>
-                        <p>TEST</p>
+                        <p>{details.landing_date}</p>
                     </div>
                     <div className="line">
                         <p>Launch Date:</p>
-                        <p>TEST</p>
+                        <p>{details.launch_date}</p>
                     </div>
                     <div className="line">
-                       <p>Number of Photos Taken:</p> 
-                       <p>TEST</p>
+                       <p>Number of Days in Mars:</p> 
+                       <p>{sol}</p>
                     </div>
                     <div className="line">
                         <p>Mission Status:</p>
-                        <p>TEST</p>
+                        <p>{details.status}</p>
                     </div>
                 </div>
-                <div className="img-wrapper"></div>
+                <div className="img-wrapper">
+                    {(rover === "curiosity") ? <img src={Curiosity}></img> :
+                    (rover === "opportunity") ? <img src={opportunity}></img> : <img src={Spirit}></img>}
+                </div>
             </div>
             <hr/>
             <div className="update">
