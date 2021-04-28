@@ -13,8 +13,7 @@ background-color: #1B3A4B;
 margin-top: 10vh;
 position: fixed;
 z-index: 0;
-overflow-y: scroll;
-
+overflow-y: auto;
 `
 
 export default function Container() {
@@ -28,7 +27,7 @@ export default function Container() {
         <ChooseRover setCount={setCount} setRover ={setRover}/>,
         <EnterSol setCount={setCount} setSol={setSol} rover={rover}/>,
         <ChooseCamera setCount={setCount} rover={rover} setCam={setCam}/>,
-        <DisplayImages rover={rover} setRover={setRover} sol={sol} setSol={setSol} setCount={setCount} cam={cam}/>
+        <DisplayImages rover={rover} setRover={setRover} sol={sol} setSol={setSol} setCount={setCount} cam={cam} setCam={setCam}/>
     ]
     return (
 

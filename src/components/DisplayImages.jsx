@@ -1,23 +1,224 @@
 import React, { useState, useEffect, useRef } from 'react'
-import styled from "styled-components"
+import styled from "styled-components";
+import Curiosity from '../assets/Curiosity.jpg' ;
+import opportunity from '../assets/opportunity.jpg' ;
+import Spirit from '../assets/Spirit.jpg' ;
+
 
 const StyledDisplayImages = styled.div`
+width: 100%;
+height: fit-content;
 z-index: 10;
 position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+hr{
+    display: none;
+    width: 95%;
+    border: 1px solid #000;
+    margin: 0;
+    margin-top: 10px;
+
+}
+.info {
+    min-height: 20vh;
+    width: 95%;
+    display: none;
+    justify-content: space-evenly;
+
+    .details {
+        width: 70%;
+        display: flex;
+        flex-direction:column;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        .line {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+        }
+        p {
+            margin: 0;
+        }
+    }
+    .img-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            margin-top: 10px;
+            width: 200px;
+            height: 200px;
+            box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.5);
+
+        }
+    }
+}
+
+.update {
+    height: 5vh;
+    width: 80%;
+    background-color: #144552;
+    display: flex;
+    margin-top: 20px;
+    .selections {
+        width: 80%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 0.6em;
+
+        select {
+            width: 20%;
+            height: 20px;
+            background-color: #3E1F47;
+            border: none;
+            color: #fff;
+        }
+        input {
+            width: 20%;
+            height: 20px;
+            background-color: #3E1F47;
+            border: none;
+            color: #fff;
+        }
+        select:hover {
+            cursor: pointer;
+        }
+
+        input:focus, select:focus {
+            box-shadow: 0 0 8px 4px #3E1F47,
+            0 0 2px 2px rgba(0,0,0,0.3);
+            outline: none;
+
+        }
+    }
+    .button-wrapper {
+        width: 20%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        button{
+            width: 60px;
+            height: 20px;
+
+            font-size: 0.6em;
+            color: #fff;
+            background-color: #3E1F47;
+            box-shadow: none;
+            border: none;
+            }
+
+        button:hover {
+                cursor: pointer;
+                box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+                transform: scale(1.05);
+                transition: 0.3s ease;
+        }
+        button:active {
+                transform: scale(0.9);
+                box-shadow: 0px 0px 2px 2px rgba(62,31,71,0.2),
+                0px 0px 3px 4px rgba(62,31,71,0.5),
+                inset 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        button:focus {
+            box-shadow: 0 0 8px 4px #3E1F47,
+            0 0 2px 2px rgba(0,0,0,0.3);
+            outline: none;
+        }
+    }
+}
+.display {
+    margin-top: 20px;
+    height: 15vh;
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+        height: 300px;
+        width: 300px;
+        margin: 10px;
+        box-shadow: 0 0 8px 4px rgba(0,0,0,0.5); 
+    }
+    img:hover {
+        transform: scale(1.01);
+        transition: 0.3s ease-in-out;
+    }
+}
+@media(min-width: 768px) {
+    .display {
+    margin-top: 20px;
+    height: 15vh;
+        img {
+            height: 400px;
+            width: 400px;
+        }
+    }
+    hr, .info {
+    display: flex;
+    }
+    .update{
+        .selections {
+        font-size: 1em;
+
+        select {
+            width: 25%;
+            height: 30px;
+
+        }
+        input {
+            width: 25%;
+            height: 30px;
+        }
+        }
+        .button-wrapper {
+            justify-content: center;
+            button{
+                width: 80px;
+                height: 30px;
+                font-size: 1em;
+            }
+        }
+    }
+
+}
+@media(min-width: 1024px) {
+    .display {
+    margin-top: 40px;
+    height: fit-content;
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
 `
 
 const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
     const [query, setQuery] = useState("");
-    const isFirstRender = useRef(true)
-    const [photos, setPhotos] = useState([])
+    const isFirstRender = useRef(true);
+    const [photos, setPhotos] = useState([]);
+    const [details, setDetails] = useState({});
+
 
     const getData = async() => {
+        console.log("data coming!!")
         try {
             let response = await fetch(query);
             let data =  await response.text();
             let dataJ = JSON.parse(data)
-            console.log(dataJ)
-            setPhotos(...photos, dataJ.photos)
+            console.log(dataJ.photos.length)
+            if (dataJ.photos.length !== 0) {
+                setPhotos(dataJ.photos)
+                setDetails(dataJ.photos[0].rover)
+            } else {
+                alert("No Photos found for choosen criterias")
+            }
 
 
         } catch (err) {
@@ -31,18 +232,95 @@ const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
     }, [query]);
 
     useEffect(()=>{
-        setQuery(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=fhaz&api_key=ETnTGuuEA1M9BtNvM7VDEb3IWGICyDLKwL2fc4mY`);
+        setQuery(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=${cam}&api_key=ETnTGuuEA1M9BtNvM7VDEb3IWGICyDLKwL2fc4mY`);
         isFirstRender.current = false;
     }, []);
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setQuery( query => `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=${cam}&api_key=ETnTGuuEA1M9BtNvM7VDEb3IWGICyDLKwL2fc4mY`);
+    }
+
+    const handleRoverChange = (e) => {
+        setRover(e.target.value)
+    }
+    const handleSolChange = (e) => {
+        setSol(e.target.value)
+    }
+    const handleCamChange = (e) => {
+        setCam(e.target.value)
+    }
 
 
 
     return (
         <StyledDisplayImages>
-            {(photos.length > 1) && photos.map((photo) => {
-                return <img src={photo.img_src} key={photo.id}></img>
-            })}
-            <h1 >Display Images here</h1>
+            <div className="info">
+                <div className="details">
+                    <div className="line">
+                        <p>Name of the Rover:</p>
+                        <p>{details.name}</p>
+                    </div>
+                    <div className="line">
+                        <p>Landing Date:</p>
+                        <p>{details.landing_date}</p>
+                    </div>
+                    <div className="line">
+                        <p>Launch Date:</p>
+                        <p>{details.launch_date}</p>
+                    </div>
+                    <div className="line">
+                       <p>Number of Days in Mars:</p> 
+                       <p>{sol}</p>
+                    </div>
+                    <div className="line">
+                        <p>Mission Status:</p>
+                        <p>{details.status}</p>
+                    </div>
+                </div>
+                <div className="img-wrapper">
+                    {(rover === "curiosity") ? <img src={Curiosity}></img> :
+                    (rover === "opportunity") ? <img src={opportunity}></img> : <img src={Spirit}></img>}
+                </div>
+            </div>
+            <hr/>
+            <div className="update">
+
+                <form onSubmit={handleSubmit} className="selections">
+                    <select name="rover" onChange={handleRoverChange}>
+                        <option value="curiosity">curiosity</option>
+                        <option value="opportunity">opportunity</option>
+                        <option value="spirit">spirit</option>
+                    </select>
+                    <input type="number" required min="0" onChange={handleSolChange}></input>
+                    <select name="camera" onChange={handleCamChange}>
+                        <option value="fhaz">Front Hazard Avoidance</option>
+                        <option value="rhaz">Rear Hazard Avoidance</option>
+                        <option value="mardi">Mars Descent Imager</option>
+                        <option value="navcam">Navigation</option>
+
+                        {rover !== "curiosity" ? 
+                        <option value="pancam">Panoramic</option> :
+                        <>
+                        <option value="mast">Mast</option>
+                        <option value="chemcam">Chemistry and Camera Complex</option>
+                        <option value="mahli">Mars Hand Lens Imager</option>
+                        </> 
+                        }
+
+                    </select>
+                </form>
+                <div className="button-wrapper">
+                    <button onClick={handleSubmit}>Update</button>
+                </div>
+
+            </div>
+            <div className="display">
+                {(photos.length > 1) && photos.map((photo) => {
+                    return <img src={photo.img_src} key={photo.id}></img>
+                })}
+            </div>
+
         </StyledDisplayImages>
     )
 }
