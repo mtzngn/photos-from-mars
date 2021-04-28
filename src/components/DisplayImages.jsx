@@ -64,20 +64,22 @@ hr{
     display: flex;
     margin-top: 20px;
     .selections {
-        width: 75%;
+        width: 80%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: center;
+        font-size: 0.6em;
+
         select {
-            width: 25%;
-            height: 30px;
+            width: 20%;
+            height: 20px;
             background-color: #3E1F47;
             border: none;
             color: #fff;
         }
         input {
-            width: 25%;
-            height: 30px;
+            width: 20%;
+            height: 20px;
             background-color: #3E1F47;
             border: none;
             color: #fff;
@@ -85,43 +87,66 @@ hr{
         select:hover {
             cursor: pointer;
         }
+
+        input:focus, select:focus {
+            box-shadow: 0 0 8px 4px #3E1F47,
+            0 0 2px 2px rgba(0,0,0,0.3);
+            outline: none;
+
+        }
     }
     .button-wrapper {
         width: 20%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
         button{
-            width: 120px;
-            height: 30px;
+            width: 60px;
+            height: 20px;
 
-            font-size: 1em;
+            font-size: 0.6em;
             color: #fff;
             background-color: #3E1F47;
             box-shadow: none;
             border: none;
-        }
+            }
 
         button:hover {
                 cursor: pointer;
                 box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
-                transform: scale(1.1);
+                transform: scale(1.05);
                 transition: 0.3s ease;
-            }
+        }
         button:active {
                 transform: scale(0.9);
                 box-shadow: 0px 0px 2px 2px rgba(62,31,71,0.2),
                 0px 0px 3px 4px rgba(62,31,71,0.5),
                 inset 2px 2px 4px rgba(0,0,0,0.3);
-            }
+        }
+        button:focus {
+            box-shadow: 0 0 8px 4px #3E1F47,
+            0 0 2px 2px rgba(0,0,0,0.3);
+            outline: none;
+        }
     }
 }
 .display {
     margin-top: 20px;
     height: 15vh;
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     img {
         height: 300px;
         width: 300px;
+        margin: 10px;
+        box-shadow: 0 0 8px 4px rgba(0,0,0,0.5); 
+    }
+    img:hover {
+        transform: scale(1.01);
+        transition: 0.3s ease-in-out;
     }
 }
 @media(min-width: 768px) {
@@ -136,6 +161,29 @@ hr{
     hr, .info {
     display: flex;
     }
+    .update{
+        .selections {
+        font-size: 1em;
+
+        select {
+            width: 25%;
+            height: 30px;
+
+        }
+        input {
+            width: 25%;
+            height: 30px;
+        }
+        }
+        .button-wrapper {
+            justify-content: center;
+            button{
+                width: 80px;
+                height: 30px;
+                font-size: 1em;
+            }
+        }
+    }
 
 }
 @media(min-width: 1024px) {
@@ -147,8 +195,6 @@ hr{
             width: 100%;
         }
     }
-
-
 }
 
 `
@@ -161,13 +207,20 @@ const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
 
 
     const getData = async() => {
+        console.log("data coming!!")
         try {
             let response = await fetch(query);
             let data =  await response.text();
             let dataJ = JSON.parse(data)
-            console.log(dataJ.photos[0].rover)
-            setPhotos(...photos, dataJ.photos)
-            setDetails(dataJ.photos[0].rover)
+            console.log(dataJ.photos.length)
+            if (dataJ.photos.length !== 0) {
+                setPhotos(dataJ.photos)
+                setDetails(dataJ.photos[0].rover)
+            } else {
+                alert("No Photos found for choosen criterias")
+            }
+
+
         } catch (err) {
             console.log(err)
         }
@@ -179,12 +232,13 @@ const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
     }, [query]);
 
     useEffect(()=>{
-        setQuery(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=fhaz&api_key=ETnTGuuEA1M9BtNvM7VDEb3IWGICyDLKwL2fc4mY`);
+        setQuery(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=${cam}&api_key=ETnTGuuEA1M9BtNvM7VDEb3IWGICyDLKwL2fc4mY`);
         isFirstRender.current = false;
     }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setQuery( query => `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=${cam}&api_key=ETnTGuuEA1M9BtNvM7VDEb3IWGICyDLKwL2fc4mY`);
     }
 
     const handleRoverChange = (e) => {
@@ -194,7 +248,7 @@ const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
         setSol(e.target.value)
     }
     const handleCamChange = (e) => {
-        console.log(e.target.value)
+        setCam(e.target.value)
     }
 
 
