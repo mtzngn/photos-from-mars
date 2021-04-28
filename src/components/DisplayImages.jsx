@@ -246,7 +246,7 @@ const DisplayImages = ({ rover, setRover, sol, setSol, cam, setCam}) => {
                         <option value="navcam">Navigation</option>
 
                         {rover !== "curiosity" ? 
-                        <option value="navcam">Panoramic</option> :
+                        <option value="pancam">Panoramic</option> :
                         <>
                         <option value="mast">Mast</option>
                         <option value="chemcam">Chemistry and Camera Complex</option>

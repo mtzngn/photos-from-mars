@@ -37,20 +37,20 @@ align-items: center;
 
 export default function ChooseCamera({ rover, setCam, setCount }) {
     const cameras = [
-        "Front Hazard Avoidance",
-        "Rear Hazard Avoidance",
-        "Mast",
-        "Chemistry and Camera Complex",
-        "Mars Hand Lens Imager",
-        "Mars Descent Imager",
-        "Navigation",
-        "Panoramic",
+        ["Front Hazard Avoidance", "fhaz"],
+        ["Rear Hazard Avoidance", "rhaz"],
+       [ "Mast", "mast"],
+        ["Chemistry and Camera Complex", "chemcam"],
+        ["Mars Hand Lens Imager", "mahli"],
+        ["Mars Descent Imager", "mardi"],
+       ["Navigation", "navcam"],
+        ["Panoramic", "pancam"],
     ]
     const curiosity = [0,1,2,3,4,5,6];
     const so = [0,1,5,6, 7] // spirit and oppportunity
 
     const handleClick = (e) => {
-        setCam(e.target.textContent)
+        setCam(e.target.id)
         setCount(count => count + 1)
     }
     return (
@@ -59,13 +59,13 @@ export default function ChooseCamera({ rover, setCam, setCount }) {
             {(rover === "Curiosity") ? curiosity.map((i) =>{
                     return (
                         <div className="wrapper" key={i + 10}>
-                            <h4 onClick={handleClick} key={i}>{cameras[i]}</h4>
+                            <h4 onClick={() => handleClick} key={i} id={cameras[i][1]}>{cameras[i][0]}</h4>
                         </div>
                     )
                 }) : so.map((i) =>{
                     return (
                         <div className="wrapper" key={i + 10}>
-                            <h4 onClick={handleClick} key={i}>{cameras[i]}</h4>
+                            <h4 onClick={handleClick} key={i} id={cameras[i][1]}>{cameras[i][0]}</h4>
                         </div>
                     )
                 }) 
