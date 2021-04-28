@@ -39,9 +39,7 @@ justify-content: space-evenly;
     }
 }
 @media(min-width: 768px) {
-    hr, .info {
     display: flex;
-    }
 }
 `
 
