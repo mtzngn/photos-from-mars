@@ -38,7 +38,7 @@ hr{
         }
     }
     .img-wrapper {
-        width: 30%;
+        width: 200px;
         border: 1px solid #fff;
     }
 }
@@ -86,6 +86,19 @@ hr{
     hr, .info {
     display: flex;
     }
+
+}
+@media(min-width: 1024px) {
+    .display {
+    margin-top: 40px;
+    height: fit-content;
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+
 
 }
 
