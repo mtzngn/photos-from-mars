@@ -33,7 +33,6 @@ h2{
         width: 100%;
         height: 100%;
         border-radius: 40px;
-        opacity:0;
         transition: .5s ease;
         text-align: center;
         display: flex;
@@ -50,13 +49,22 @@ h2{
     }
 }
 
-.container:hover .overlay {
-    opacity: 1;
-}
-.container:hover {
+
+
+@media (hover) {
+    .container:hover {
     transform: scale(1.1);
     transition: 1s ease-in-out;
+    }
+    .overlay {
+        opacity:0;
+    }
+    .container:hover .overlay {
+    opacity: 1;
 }
+}
+
+
 }
 @media(min-width: 1024px) {
     .card-wrapper {
