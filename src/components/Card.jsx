@@ -17,15 +17,16 @@ height: fit-content;
 width: 100%;
 .card {
     color: ${clrNeutal100};
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
     padding: 10rem 0 0;
     max-width: 35ch;
     border-radius: 0.5rem;
     overflow: hidden;
     transition: transform 500ms ease;
 }
-img {
-    width: 100%;
-}
+
 .card:hover,
 .card:focus-within {
     transform: scale(1.05);
@@ -117,15 +118,18 @@ img {
 }
 `
 
- const Card = ( { title, detail, src } ) => {
+ const Card = ( { title, detail, src, setCount, setRover } ) => {
+    const handleClick = (e) => {
+        setCount(count => count + 1)
+        setRover(title)
+    }
     return (
         <StyledCard>
-            <div class="card">
-                <img src={src} alt="rover" />
-                <div class="card-content">
+            <div class="card" style={{ backgroundImage: `url(${src})` }}>
+                <div class="card-content"  >
                 <h2 class="card-title">{title}</h2>
                 <p class="card-body">{detail}</p>
-                <a href="#" class="button">Choose</a>
+                <a href="#" class="button" onClick={handleClick}>Choose</a>
                 </div>
             </div>
     </StyledCard>

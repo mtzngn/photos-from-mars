@@ -29,20 +29,9 @@ const ChooseRover = ({ setCount, setRover}) => {
         <StyledChooseRover >
             <h2>Choose a Rover</h2>
             <div className="card-wrapper">
-            {/* {rovers.map((rover, i)=>{
-                return(
-                    <div className="wrapper" key={i} >
-                        <div className="container" key={i + 5}>
-                            <img src={rover.src} alt="Rover Curiosity" className="img" key={i + 10}/>
-                            <div className="overlay" key={i +15} onClick={handleClick} id={rover.name1}>
-                                <h3 id={rover.name1}>{rover.name1}</h3>
-                            </div>
-                        </div>
-                    </div>
-            )})} */}
             {rovers.map((rover,i) => {
                 return (
-                    <Card title={rover.name1} detail={rover.detail} src={rover.src} />
+                    <Card title={rover.name1} detail={rover.detail} src={rover.src} setCount={setCount} setRover={setRover} />
                 )
             })}
             </div>
