@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import Spirit from '../assets/Spirit.jpg' ;
 
 const clrNeutal900 = "hsl(207, 19%, 9%)";
 const clrNeutal100 = "hsl(0, 0%, 100%)";
@@ -12,6 +11,7 @@ display: flex;
 flex-direction: column;
 justify-content: space-evenly;
 align-items: center;
+margin-bottom: 5vh;
 
 height: fit-content;
 width: 100%;
@@ -72,9 +72,10 @@ width: 100%;
     cursor: pointer;
     display: inline;
     text-decoration: none;
+    border:none;
     color: ${clrNeutal900};
     background-color:${clrAccent400};
-    padding: 0.5em 1.25em;
+    padding: 1em 1.5em;
     border-radius: 0.25rem;
 
 }
@@ -125,11 +126,11 @@ width: 100%;
     }
     return (
         <StyledCard>
-            <div class="card" style={{ backgroundImage: `url(${src})` }}>
-                <div class="card-content"  >
-                <h2 class="card-title">{title}</h2>
-                <p class="card-body">{detail}</p>
-                <a href="#" class="button" onClick={handleClick}>Choose</a>
+            <div className="card" style={{ backgroundImage: `url(${src})` }}>
+                <div className="card-content"  >
+                <h2 className="card-title">{title}</h2>
+                <p className="card-body">{detail}</p>
+                <button className="button" onClick={handleClick}>Choose</button>
                 </div>
             </div>
     </StyledCard>
